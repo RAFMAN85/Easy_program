@@ -70,7 +70,6 @@ int main() {
     }else{
         std::cout<<"Wrong! Exiting program in 5 seconds!";
         sleep(5);
-        exit(0);
     }
     return 0;
 }
