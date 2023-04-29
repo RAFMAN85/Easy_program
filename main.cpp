@@ -3,6 +3,7 @@
 #include <string>
 #include <bitset>
 #include <unistd.h>
+#include <random>
 
 struct LOGIN_INFO{
     std::string login;
@@ -42,6 +43,7 @@ std::string generate_key(const std::string& login, const std::string& password, 
 
     return key_str;
 }
+
 
 int main(int argc, char* argv[]) {
     if(argc!=5){
