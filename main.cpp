@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <bitset>
+#include <unistd.h>
 
 struct LOGIN_INFO{
     std::string login;
@@ -64,9 +65,11 @@ int main() {
     std::cout<<"Enter key: ";
     std::cin>>key_input;
     if(key_input==temp_buffer){
-        std::cout<<"Key logging complete!";
+        std::cout<<"Key logging complete! Programm will close in 5 seconds";
+        sleep(5);
     }else{
-        std::cout<<"Wrong! Exiting program!";
+        std::cout<<"Wrong! Exiting program in 5 seconds!";
+        sleep(5);
         exit(0);
     }
     return 0;
