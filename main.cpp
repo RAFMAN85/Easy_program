@@ -10,7 +10,7 @@ struct LOGIN_INFO{
 };
 
 
-std::string generateKey(const std::string& login, const std::string& password, const std::string& phone) {
+std::string generate_key(const std::string& login, const std::string& password, const std::string& phone) {
     int loginLen = login.length();
     int passwordLen = password.length();
     int phoneLen = phone.length();
@@ -24,7 +24,7 @@ std::string generateKey(const std::string& login, const std::string& password, c
     for (int i = 0; i < 256; i++) {
         key[i] = bit_str[i] ^ bit_str[(i + loginLen + passwordLen + phoneLen) % 256];
     }
-    std::string keyStr = "";
+    std::string key_str = "";
     for (int i = 0; i < 32; i++) {
         std::bitset<8> byte;
         for (int j = 0; j < 8; j++) {
@@ -33,13 +33,13 @@ std::string generateKey(const std::string& login, const std::string& password, c
         int byte_value = byte.to_ulong();
         int char_index = byte_value % 36;
         if (char_index < 10) {
-            keyStr += static_cast<char>('0' + char_index); // Numbers 0-9
+            key_str += static_cast<char>('0' + char_index); // Numbers 0-9
         } else {
-            keyStr += static_cast<char>('a' + (char_index - 10)); // Letters a-z
+            key_str += static_cast<char>('a' + (char_index - 10)); // Letters a-z
         }
     }
 
-    return keyStr;
+    return key_str;
 }
 
 int main() {
@@ -59,7 +59,7 @@ int main() {
         exit(0);
     }
 
-    std::string temp_buffer = generateKey(buffer_info.login, buffer_info.password, buffer_info.phone_number);
+    std::string temp_buffer = generate_key(buffer_info.login, buffer_info.password, buffer_info.phone_number);
     std::cout<<temp_buffer<<std::endl;
     std::cout<<"Enter key: ";
     std::cin>>key_input;
